@@ -15,7 +15,7 @@ app.engine(".hbs", hbs({
 }));
 
 app.get("/", function(req, res){
-  res.render("layout-main", {layout: false});
+  res.render("main", {layout: false});
 });
 
 app.get("/api/questions", function(req, res){
