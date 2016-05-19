@@ -5,6 +5,7 @@ var mongoose= require("./db/connection");
 var app     = express();
 var Question= mongoose.model("Question");
 
+app.use("/assets", express.static("public"));
 app.set("view engine", "hbs");
 app.engine(".hbs", hbs({
   extname:      ".hbs",
