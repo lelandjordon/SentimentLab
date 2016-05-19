@@ -7,6 +7,7 @@
     "ngResource"
   ])
   .config(Router)
+  .factory("Question", QuestionFactory)
   .controller("Index", IndexCtrl);
   
   Router.$inject = ["$stateProvider"];
@@ -24,16 +25,15 @@
     });
   }
   
-  IndexCtrl.$inject = [];
-  function IndexCtrl(){
+  QuestionFactory.$inject = ["$resource"];
+  function QuestionFactory($resource){
+    var Question = $resource("/api/questions/:title");
+    return Question;
+  }
+  
+  IndexCtrl.$inject = ["Question"];
+  function IndexCtrl(Question){
     var vm        = this;
-    vm.questions  = [
-      {
-        text: "Test123"
-      },
-      {
-        text: "Test456"
-      }
-    ];
+    vm.questions  = Question.query();
   }
 })();

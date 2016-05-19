@@ -1,5 +1,10 @@
 <ul>
   <li data-ng-repeat="question in IndexVM.questions">
     <h2>{{question.text}}</h2>
+    <ul>
+      <li data-ng-repeat="answer in question.answers">
+        {{answer.text}}
+      </li>
+    </ul>
   </li>
 </ul>
