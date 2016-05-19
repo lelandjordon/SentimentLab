@@ -1,11 +1,20 @@
 var express = require("express");
+var hbs     = require("express-handlebars");
 var mongoose= require("./db/connection");
 
 var app     = express();
 var Question= mongoose.model("Question");
 
+app.set("view engine", "hbs");
+app.engine(".hbs", hbs({
+  extname:      ".hbs",
+  layoutsDir:   "views",
+  partialsDir:  "views",
+  defaultLayout:"layout-main"
+}));
+
 app.get("/", function(req, res){
-  res.send("This is working!");
+  res.render("app-welcome");
 });
 
 app.get("/api/questions", function(req, res){
