@@ -1,1 +1,9 @@
-console.log("Working!");
+"use strict";
+
+(function(){
+  angular
+  .module("myApp", [
+    "ui.router",
+    "ngResource"
+  ]);
+})();
