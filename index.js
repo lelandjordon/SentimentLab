@@ -27,7 +27,9 @@ app.get("/api/questions", function(req, res){
 });
 
 app.post("/api/questions", function(req, res){
-  res.json(req.body);
+  Question.create(req.body).then(function(question){
+    res.json(question);
+  });
 });
 
 app.listen(3001, function(){

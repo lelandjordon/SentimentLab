@@ -37,7 +37,7 @@
     vm.questions  = Question.query();
     vm.create     = function(){
       Question.save(vm.newQuestion, function(response){
-        console.log(response);
+        vm.questions.push(response);
       });
     }
   }
