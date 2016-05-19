@@ -1,10 +1,12 @@
 var express = require("express");
 var hbs     = require("express-handlebars");
+var parser  = require("body-parser");
 var mongoose= require("./db/connection");
 
 var app     = express();
 var Question= mongoose.model("Question");
 
+app.use(parser.json({extended: true}));
 app.use("/assets", express.static("public"));
 app.set("view engine", "hbs");
 app.engine(".hbs", hbs({
@@ -22,6 +24,10 @@ app.get("/api/questions", function(req, res){
   Question.find().then(function(questions){
     res.json(questions);
   });
+});
+
+app.post("/api/questions", function(req, res){
+  res.json(req.body);
 });
 
 app.listen(3001, function(){

@@ -35,5 +35,10 @@
   function IndexCtrl(Question){
     var vm        = this;
     vm.questions  = Question.query();
+    vm.create     = function(){
+      Question.save(vm.newQuestion, function(response){
+        console.log(response);
+      });
+    }
   }
 })();
