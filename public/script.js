@@ -45,6 +45,7 @@
     var url=[];
     return {
       sendData: function(data){
+        console.log(data);
         var url = "https://api.nytimes.com/svc/search/v2/articlesearch.json";
         url += '?' + $.param({
           'api-key': "4cff979d864d4b4292e372cb9a73caac",
@@ -77,8 +78,9 @@
     var StartVM        = this;
 
     this.search = function (){
-      NYTFactory.sendData(this.searchTerm)
-      .then(function(res){
+      var term = this;
+      NYTFactory.sendData(term.searchTerm)
+      .then(function(req, res){
         console.log(res);
       });
     };
